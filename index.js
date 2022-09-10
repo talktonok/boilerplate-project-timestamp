@@ -33,7 +33,7 @@ const timestampInMs = date1.getTime();
 const timestampInSeconds = Math.floor(date1.getTime() / 1000);
 
   var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-var date2 = new Date(timestampInSeconds * 1000).toLocaleDateString("en-US", options);
+var date2 = new Date(timestampInSeconds * 1000).toUTCString(options);
 
   
   res.json({unix: timestampInSeconds, utc: date2});
@@ -42,7 +42,7 @@ var date2 = new Date(timestampInSeconds * 1000).toLocaleDateString("en-US", opti
     const date1 = new Date(date * 1000);
     const timestampInSeconds = Math.floor(date1.getTime() / 1000);
     var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-var date2 = new Date(timestampInSeconds).toLocaleDateString("en-US", options);
+var date2 = new Date(timestampInSeconds).toUTCString( options);
 
   
   res.json({unix: timestampInSeconds, utc: date2});
