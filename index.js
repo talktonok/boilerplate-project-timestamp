@@ -24,6 +24,36 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api/:date", function (req, res) {
+  let {date} = req.params;
+  if(date.includes('-')){
+
+const date1 = new Date(date);
+const timestampInMs = date1.getTime();
+const timestampInSeconds = Math.floor(date1.getTime() / 1000);
+
+  var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+var date2 = new Date(timestampInSeconds * 1000).toLocaleDateString("en-US", options);
+
+  
+  res.json({unix: timestampInSeconds, utc: date2});
+  } else 
+  {
+    const date1 = new Date(date * 1000);
+    const timestampInSeconds = Math.floor(date1.getTime() / 1000);
+    var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+var date2 = new Date(timestampInSeconds).toLocaleDateString("en-US", options);
+
+  
+  res.json({unix: timestampInSeconds, utc: date2});
+   // res.json({unix: "timestampInSeconds", utc: "date2"});
+  }
+});
+
+app.get("/api/:time", function (req, res) {
+  res.json({unix: 'hello API'});
+});
+
 
 
 // listen for requests :)
